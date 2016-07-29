@@ -1,0 +1,36 @@
+<h1>Cart</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="cart-info">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="image">Image</th>
+            <th>Product</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(key,product) in car.contents">
+            <td class="image"><img alt="{{ product.title }}" ng-src="{{ Page.image.resize(product.image, 100, 100) }}" /></td>
+            <td class="name"><a href="/product/{{ product.slug }}">{{ product.title }}</a></td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.pricing.formatted.with_tax }}</td>
+            <td class="quantity">
+              <input type="text" size="1" value="{{ product.quantity }}" id="c_{{ key }}" name="qty[{{ key }}]" />
+              <input type="image" title="Update" alt="Update" src="/images/update.png" ng-id="{{ key }}" ng-qty="#c_{{ key }}" cart-qty />
+              <input type="image" title="Remove" alt="Remove" src="/images/remove.png" ng-id="{{ key }}" ng-qty="0" cart-qty />
+            </td>
+            <td class="total">{{ product.totals.pre_discount.formatted.with_tax }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button type="button" name="button" ng-click="deleteCart()">Clear all items</button>
+    <button type="button" name="button"><a href="#/checkout">Checkout</a></button>
+  </div>
+</div>

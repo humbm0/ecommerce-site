@@ -1,0 +1,6 @@
+<h1>{{ prod.title }}</h1>
+
+<div ng-bind-html="prod.description"></div>
+<strong>{{ prod.price.value }}</strong>
+<button type="button" name="button" ng-if="!addStatus" ng-click="addCart()" class="btn btn-success">Add to cart</button>
+<button type="button" name="button" ng-if="addStatus" class="btn btn-warning">{{ addStatus }}</button>
